@@ -2,18 +2,27 @@ let a: number;
 let b: boolean;
 let c: string;
 
-type User = {
+interface BasicUser {
   name: string;
   surname: string;
   age: number;
   isAdmin: boolean;
-};
+  permissions?: string[];
+}
 
-const user: User = {
+const user: BasicUser = {
   name: "Celyne",
   surname: "Kydd",
-  age: 30,
+  age: 28,
   isAdmin: true,
+};
+
+const user2: BasicUser = {
+  name: "Zarya",
+  surname: "Lumi",
+  age: 30,
+  isAdmin: false,
+  permissions: ["manager", "operator", "instructor"],
 };
 
 type MathFunc = (a: number, b: number) => number;
