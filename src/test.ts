@@ -6,15 +6,39 @@ let d: Array<string>;
 
 type Permissions = "admin" | "user" | "manager";
 
-type TuplePermissions = [Permissions, number];
+type PermissionsWithoutAdmin = Exclude<Permissions, "admin">;
 
-type BasicUser<A = boolean, P = TuplePermissions[]> = {
+interface DepartmentForPermission {
+  depName: string;
+  lvl: number;
+}
+
+const DepsForPerms: Record<Permissions, DepartmentForPermission> = {
+  admin: {
+    depNane: "security",
+    lvl: 10,
+  },
+  user: {
+    depNane: "sales",
+    lvl: 5,
+  },
+  manager: {
+    depNane: "sales",
+    lvl: 10,
+  },
+};
+
+type TuplePermissions = [Permissions, Permissions];
+
+type BasicUser<A = boolean, P = TuplePermissions> = {
   name: string;
   surname: string;
   age: number;
   isAdmin: A;
   permissions?: P;
 };
+
+type BasicUserWithoutPermissions = Omit<BasicUser, "permissions">;
 
 type AdvancedUser = {
   account: number;
@@ -44,6 +68,10 @@ const usersArray: FullUser<boolean>[] = [user, user, user];
 function getFirst<T>(arr: T[]): T {
   return arr[0];
 }
+
+type BasicFunction = () => FullUser[];
+
+type getFirstReturnType = ReturnType<BasicFunction>;
 
 getFirst<FullUser<boolean>>(usersArray);
 
