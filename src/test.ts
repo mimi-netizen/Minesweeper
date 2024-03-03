@@ -9,7 +9,7 @@ type Permissions = "admin" | "user" | "manager";
 type TuplePermissions = [Permissions, number];
 
 type BasicUser<A = boolean, P = TuplePermissions[]> = {
-  readonly name: string;
+  name: string;
   surname: string;
   age: number;
   isAdmin: A;
@@ -21,6 +21,12 @@ type AdvancedUser = {
 };
 
 type FullUser<A = boolean, P = string[]> = BasicUser<A, P> & AdvancedUser;
+
+type BasicUserReadonly = Readonly<BasicUser>;
+type BasicUserRequired = Required<BasicUser>;
+type BasicUserPartial = Partial<BasicUser>;
+
+type BasicUserReadonlyRequired = Readonly<Required<BasicUser>>;
 
 const user: FullUser<boolean> = {
   name: "Celyne",
