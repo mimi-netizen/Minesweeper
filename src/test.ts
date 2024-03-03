@@ -19,13 +19,13 @@ const user: BasicUser = {
   isAdmin: true,
 };
 
-const user2: BasicUser<number> = {
-  name: "Zarya",
-  surname: "Lumi",
-  age: 30,
-  isAdmin: 1,
-  permissions: ["manager", "operator", "instructor"],
-};
+const usersArray: BasicUser[] = [user, user, user];
+
+function getFirst<T>(arr: T[]): T {
+  return arr[0];
+}
+
+getFirst<BasicUser>(usersArray);
 
 type MathFunc = (a: number, b: number) => number;
 
