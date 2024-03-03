@@ -15,3 +15,9 @@ const user: User = {
   age: 30,
   isAdmin: true,
 };
+
+type MathFunc = (a: number, b: number) => number;
+
+const mul: MathFunc = (a, b): number => a * b;
+
+const add: MathFunc = (a, b): number => a + b;
