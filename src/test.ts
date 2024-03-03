@@ -9,7 +9,7 @@ type Permissions = "admin" | "user" | "manager";
 type TuplePermissions = [Permissions, number];
 
 type BasicUser<A = boolean, P = TuplePermissions[]> = {
-  name: string;
+  readonly name: string;
   surname: string;
   age: number;
   isAdmin: A;
@@ -30,6 +30,8 @@ const user: FullUser<boolean> = {
   account: 100,
   permissions: ["admin", "user", "manager"],
 };
+
+user.name = "Test";
 
 const usersArray: FullUser<boolean>[] = [user, user, user];
 
