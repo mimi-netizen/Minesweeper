@@ -4,19 +4,29 @@ let c: string;
 
 let d: Array<string>;
 
-interface BasicUser<A = boolean> {
+type Permissions = "admin" | "user" | "manager";
+
+type BasicUser<A = boolean, P = string[]> = {
   name: string;
   surname: string;
   age: number;
   isAdmin: A;
-  permissions?: string[];
-}
+  permissions?: P[];
+};
 
-const user: BasicUser = {
+type AdvancedUser = {
+  account: number;
+};
+
+type FullUser<A = boolean, P = string[]> = BasicUser<A, P> & AdvancedUser;
+
+const user: FullUser<boolean, Permissions> = {
   name: "Celyne",
   surname: "Kydd",
   age: 28,
   isAdmin: true,
+  account: 100,
+  permissions: ["admin", "user", "manager"],
 };
 
 const usersArray: BasicUser[] = [user, user, user];
