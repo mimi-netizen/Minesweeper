@@ -6,12 +6,14 @@ let d: Array<string>;
 
 type Permissions = "admin" | "user" | "manager";
 
-type BasicUser<A = boolean, P = string[]> = {
+type TuplePermissions = [Permissions, number];
+
+type BasicUser<A = boolean, P = TuplePermissions[]> = {
   name: string;
   surname: string;
   age: number;
   isAdmin: A;
-  permissions?: P[];
+  permissions?: P;
 };
 
 type AdvancedUser = {
@@ -20,7 +22,7 @@ type AdvancedUser = {
 
 type FullUser<A = boolean, P = string[]> = BasicUser<A, P> & AdvancedUser;
 
-const user: FullUser<boolean, Permissions> = {
+const user: FullUser<boolean> = {
   name: "Celyne",
   surname: "Kydd",
   age: 28,
@@ -29,13 +31,13 @@ const user: FullUser<boolean, Permissions> = {
   permissions: ["admin", "user", "manager"],
 };
 
-const usersArray: BasicUser[] = [user, user, user];
+const usersArray: FullUser<boolean>[] = [user, user, user];
 
 function getFirst<T>(arr: T[]): T {
   return arr[0];
 }
 
-getFirst<BasicUser>(usersArray);
+getFirst<FullUser<boolean>>(usersArray);
 
 type MathFunc = (a: number, b: number) => number;
 
