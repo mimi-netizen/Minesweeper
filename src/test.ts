@@ -2,11 +2,13 @@ let a: number;
 let b: boolean;
 let c: string;
 
-interface BasicUser {
+let d: Array<string>;
+
+interface BasicUser<A = boolean> {
   name: string;
   surname: string;
   age: number;
-  isAdmin: boolean;
+  isAdmin: A;
   permissions?: string[];
 }
 
@@ -17,11 +19,11 @@ const user: BasicUser = {
   isAdmin: true,
 };
 
-const user2: BasicUser = {
+const user2: BasicUser<number> = {
   name: "Zarya",
   surname: "Lumi",
   age: 30,
-  isAdmin: false,
+  isAdmin: 1,
   permissions: ["manager", "operator", "instructor"],
 };
 
